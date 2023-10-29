@@ -36,7 +36,6 @@ public class DemoQaTest extends Config {
         $(".table-responsive").shouldHave(text("Alexander Gromchenko"));
         $(".table-responsive").shouldHave(text("test@gmail.com"));
         $(".table-responsive").shouldHave(text("Male"));
-        $(".table-responsive").shouldHave(text("Male"));
         $(".table-responsive").shouldHave(text("20 February,1991"));
         $(".table-responsive").shouldHave(text("Physics"));
         $(".table-responsive").shouldHave(text("Sports, Reading, Music"));
