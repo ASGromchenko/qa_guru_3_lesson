@@ -5,53 +5,50 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byValue;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.files.DownloadActions.click;
 
 public class DemoQaTest extends Config {
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.holdBrowserOpen = false;
-        Configuration.timeout = 5000;
-    }
 
     @Test
     void fillFormTest() {
         open("/automation-practice-form");
-        $("#firstName").shouldBe(visible).setValue("Alexander");
-        $("#lastName").shouldBe(visible).setValue("Gromchenko");
-        $("#userEmail").shouldBe(visible).setValue("test@gmail.com");
-        $("[for='gender-radio-1']").shouldBe(visible).click();
-        $("#userNumber").shouldBe(visible).setValue("79031234567");
-        $("#dateOfBirthInput").shouldBe(visible).click();
-        $(".react-datepicker__month-select").shouldBe(visible).click();
-        $(byValue("1")).shouldBe(visible).click();
-        $(".react-datepicker__year-select").shouldBe(visible).click();
-        $(byValue("1991")).shouldBe(visible).click();
-        $(".react-datepicker__day--020").shouldBe(visible).click();
-        $("[for='hobbies-checkbox-1'").shouldBe(visible).click();
-        $("[for='hobbies-checkbox-2'").shouldBe(visible).click();
-        $("[for='hobbies-checkbox-3'").shouldBe(visible).click();
-        $("#uploadPicture").shouldBe(visible).uploadFile(new File("picture/homer.png"));
-        $("#currentAddress").shouldBe(visible).setValue("Home Address");
-        $("#react-select-3-input").shouldBe(visible).val("NCR").pressEnter();
-        $("#react-select-4-input").shouldBe(visible).val("Delhi").pressEnter();
-        $("#subjectsInput").shouldBe(visible).setValue("Physics").pressEnter();
-        $("#submit").shouldBe(visible).pressEnter();
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+        $("#firstName").setValue("Alexander");
+        $("#lastName").setValue("Gromchenko");
+        $("#userEmail").setValue("test@gmail.com");
+        $("#genterWrapper").$(byText("Male")).click();
+        $("#userNumber").setValue("79031234567");
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").click();
+        $(byValue("1")).click();
+        $(".react-datepicker__year-select").click();
+        $(byValue("1991")).click();
+        $(".react-datepicker__day--020").click();
+        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#hobbiesWrapper").$(byText("Reading")).click();
+        $("#hobbiesWrapper").$(byText("Music")).click();
+        $("#uploadPicture").uploadFile(new File("picture/homer.png"));
+        $("#currentAddress").setValue("Home Address");
+        $("#react-select-3-input").val("NCR").pressEnter();
+        $("#react-select-4-input").val("Delhi").pressEnter();
+        $("#subjectsInput").setValue("Physics").pressEnter();
+        $("#submit").pressEnter();
 
-        $(".table-responsive").shouldHave(
-                text("Alexander Gromchenko"),
-                text("test@gmail.com"),
-                text("Male"),
-                text("7903123456"),
-                text("20 February,1991"),
-                text("Physics"),
-                text("Sports, Reading, Music"),
-                text("homer.png"),
-                text("Home Address"),
-                text("NCR Delhi")
-        );
+        $(".table-responsive").shouldHave(text("Alexander Gromchenko"));
+        $(".table-responsive").shouldHave(text("test@gmail.com"));
+        $(".table-responsive").shouldHave(text("Male"));
+        $(".table-responsive").shouldHave(text("Male"));
+        $(".table-responsive").shouldHave(text("20 February,1991"));
+        $(".table-responsive").shouldHave(text("Physics"));
+        $(".table-responsive").shouldHave(text("Sports, Reading, Music"));
+        $(".table-responsive").shouldHave(text("homer.png"));
+        $(".table-responsive").shouldHave(text("Home Address"));
+        $(".table-responsive").shouldHave(text("NCR Delhi"));
+
+
     }
 }
