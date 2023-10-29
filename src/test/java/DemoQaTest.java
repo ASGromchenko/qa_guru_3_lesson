@@ -20,15 +20,13 @@ public class DemoQaTest extends Config {
         $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue("79031234567");
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").click();
-        $(byValue("1")).click();
-        $(".react-datepicker__year-select").click();
-        $(byValue("1991")).click();
+        $(".react-datepicker").$(byValue("1")).click();
+        $(".react-datepicker").$(byValue("1991")).click();
         $(".react-datepicker__day--020").click();
         $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#hobbiesWrapper").$(byText("Reading")).click();
         $("#hobbiesWrapper").$(byText("Music")).click();
-        $("#uploadPicture").uploadFile(new File("picture/homer.png"));
+        $("#uploadPicture").uploadFromClasspath("homer.png");
         $("#currentAddress").setValue("Home Address");
         $("#react-select-3-input").val("NCR").pressEnter();
         $("#react-select-4-input").val("Delhi").pressEnter();
